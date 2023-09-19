@@ -10,9 +10,8 @@ const booksRead = computed(() => {
 const booksReadMessage = computed(() => {
   return booksRead.value >= props.books.length
     ? "All books read! Congratulations!"
-    : `${booksRead.value} out of ${props.books.length} books read`
+    : `${booksRead.value} out of ${props.books.length} books read`;
 });
-
 </script>
 
 <template>
