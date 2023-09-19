@@ -1,7 +1,8 @@
 <script setup>
+import { reactive } from "vue";
 import Books from "./components/Books.vue";
 
-let books = [
+let books = reactive([
   {
     id: 1,
     title: "History of Europe",
@@ -38,7 +39,13 @@ let books = [
     isbn: "0-395-07157-8",
     author: "Daniel Trejo",
   },
-];
+]);
+
+function toggleIsRead(idBook) {
+  books.forEach((book) => {
+    if (book.id === idBook) book.isRead = !book.isRead;
+  });
+}
 </script>
 
 <template>
@@ -49,7 +56,7 @@ let books = [
     </div>
 
     <div class="books-container">
-      <Books :books="books" />
+      <Books :books="books" @toggleIsRead="toggleIsRead" />
     </div>
   </div>
 </template>
