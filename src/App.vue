@@ -45,6 +45,11 @@ let books = reactive([
 
 let showAddBook = ref(false);
 
+function addBook(newBook) {
+  books.push(newBook);
+  showAddBook.value = false;
+};
+
 function toggleIsRead(idBook) {
   books.forEach((book) => {
     if (book.id === idBook) book.isRead = !book.isRead;
@@ -65,7 +70,7 @@ function toggleIsRead(idBook) {
     </div>
   </div>
   <div v-else>
-    <AddBook @closeAddBook="showAddBook = false" />
+    <AddBook @addBook="addBook" @closeAddBook="showAddBook = false" />
   </div>
 </template>
 

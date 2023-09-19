@@ -1,4 +1,13 @@
-<script></script>
+<script setup>
+let newBook = {
+  id: 1,
+  title: "",
+  cover: "",
+  isRead: false,
+  isbn: "",
+  author: "",
+};
+</script>
 
 <template>
   <h1>📖 Add Book</h1>
@@ -10,29 +19,54 @@
   <form class="add-form">
     <div class="form-control">
       <label>Título</label>
-      <input type="text" name="text" placeholder="Adicione o título" />
+      <input
+        v-model="newBook.title"
+        type="text"
+        name="text"
+        placeholder="Add book title"
+        required
+      />
     </div>
     <div class="form-control">
-      <label>Capa</label>
+      <label>Cover</label>
       <input
+        v-model="newBook.cover"
         type="text"
         name="cover"
         placeholder="Adicione o link da imagem de capa"
+        required
       />
     </div>
     <div class="form-control">
       <label>Autor</label>
-      <input type="text" name="author" placeholder="Adicione o autor" />
+      <input
+        v-model="newBook.author"
+        type="text"
+        name="author"
+        placeholder="Add o autor"
+      />
     </div>
     <div class="form-control">
       <label>ISBN#</label>
-      <input type="text" name="isbn" placeholder="Adicione o ISBN" />
+      <input
+        v-model="newBook.isbn"
+        type="text"
+        name="isbn"
+        placeholder="Add ISBN code"
+      />
     </div>
     <div class="form-control form-control-check">
-      <input type="checkbox" name="readIt" id="readIt" />
+      <input
+        v-model="newBook.isRead"
+        type="checkbox"
+        name="readIt"
+        id="readIt"
+      />
       <label for="readIt">Já li o livro</label>
     </div>
 
-    <button type="submit" class="btn btn-block">Save book</button>
+    <button @click.prevent="$emit('addBook', newBook)" type="submit" class="btn btn-block">
+      Save book
+    </button>
   </form>
 </template>
